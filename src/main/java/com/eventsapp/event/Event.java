@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.OffsetDateTime;
+import java.time.ZoneOffset;
 
 @Entity
 @Table(name = "events")
@@ -28,5 +29,5 @@ public class Event {
 
     @Column(name = "created_at", nullable = false, updatable = false)
     @Builder.Default
-    private OffsetDateTime createdAt = OffsetDateTime.now();
+    private OffsetDateTime createdAt = OffsetDateTime.now(ZoneOffset.UTC);
 }
