@@ -2,18 +2,16 @@ package com.eventsapp.registration.controller;
 
 import com.eventsapp.registration.dto.RegisterRequest;
 import com.eventsapp.registration.service.RegistrationService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@RequiredArgsConstructor
 @RequestMapping("/api/events/{eventId}/registrations")
 public class RegistrationController {
 
     private final RegistrationService registrationService;
-
-    public RegistrationController(RegistrationService registrationService) {
-        this.registrationService = registrationService;
-    }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
