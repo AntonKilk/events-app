@@ -1,4 +1,4 @@
-package com.eventsapp.event;
+package com.eventsapp.event.model;
 
 import jakarta.persistence.*;
 import lombok.*;

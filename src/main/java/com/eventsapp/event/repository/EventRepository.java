@@ -1,5 +1,6 @@
-package com.eventsapp.event;
+package com.eventsapp.event.repository;
 
+import com.eventsapp.event.model.Event;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
