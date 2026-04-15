@@ -1,7 +1,7 @@
-package com.eventsapp.registration;
+package com.eventsapp.registration.repository;
 
-import com.eventsapp.event.Event;
-import com.eventsapp.event.EventRepository;
+import com.eventsapp.event.model.Event;
+import com.eventsapp.event.repository.EventRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -14,6 +14,7 @@ import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
 
 import java.time.OffsetDateTime;
+import java.time.ZoneOffset;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -43,7 +44,7 @@ class RegistrationRepositoryTest {
 
     private Event savedEvent(String name) {
         return eventRepository.save(
-                Event.builder().name(name).startsAt(OffsetDateTime.now().plusDays(1)).maxParticipants(10).build());
+                Event.builder().name(name).startsAt(OffsetDateTime.now(ZoneOffset.UTC).plusDays(1)).maxParticipants(10).build());
     }
 
     @Test

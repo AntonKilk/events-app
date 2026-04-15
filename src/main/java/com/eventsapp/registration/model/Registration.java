@@ -1,4 +1,4 @@
-package com.eventsapp.registration;
+package com.eventsapp.registration.model;
 
 import jakarta.persistence.*;
 import lombok.AccessLevel;
@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.time.OffsetDateTime;
+import java.time.ZoneOffset;
 
 @Entity
 @Table(name = "registrations",
@@ -31,5 +32,5 @@ public class Registration {
     private String idNumber;
 
     @Column(name = "created_at", nullable = false, updatable = false)
-    private OffsetDateTime createdAt = OffsetDateTime.now();
+    private OffsetDateTime createdAt = OffsetDateTime.now(ZoneOffset.UTC);
 }

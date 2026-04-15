@@ -1,5 +1,6 @@
-package com.eventsapp.registration;
+package com.eventsapp.registration.repository;
 
+import com.eventsapp.registration.model.Registration;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -10,7 +11,6 @@ public interface RegistrationRepository extends JpaRepository<Registration, Long
 
     long countByEventId(Long eventId);
 
-    @Transactional
     @Modifying
     @Query(value = """
         INSERT INTO registrations (event_id, first_name, last_name, id_number, created_at)

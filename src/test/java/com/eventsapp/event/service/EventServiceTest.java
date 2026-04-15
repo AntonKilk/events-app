@@ -1,10 +1,9 @@
-package com.eventsapp.event;
+package com.eventsapp.event.service;
 
 import com.eventsapp.event.dto.CreateEventRequest;
 import com.eventsapp.event.dto.EventResponse;
 import com.eventsapp.event.model.Event;
 import com.eventsapp.event.repository.EventRepository;
-import com.eventsapp.event.service.EventService;
 import com.eventsapp.registration.repository.RegistrationRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
