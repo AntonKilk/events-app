@@ -1,0 +1,12 @@
+.git
+.gradle
+.idea
+.vscode
+.claude
+.env
+build/
+frontend/node_modules/
+frontend/dist/
+*.iml
+*.iws
+*.ipr

@@ -29,6 +29,8 @@ ADMIN_PASSWORD=changeme
 
 **2. Start the database**
 
+The backend requires PostgreSQL to be running before it starts.
+
 ```bash
 docker compose up -d db
 ```
@@ -40,6 +42,8 @@ docker compose up -d db
 ```
 
 The API starts at `http://localhost:8080`. Liquibase runs the database migrations automatically on first start.
+
+> **Tip:** If you just want to build the JAR without running tests (tests spin up Docker containers and take several minutes), use `./gradlew bootJar -x test`. For the fastest full-stack setup, skip steps 2–4 and use `docker compose up --build` instead — it builds and starts everything in one command.
 
 **4. Start the frontend**
 
