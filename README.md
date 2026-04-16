@@ -2,6 +2,9 @@
 
 A simple event registration service. Administrators create events; anyone can register for them.
 
+<img width="995" height="516" alt="view" src="https://github.com/user-attachments/assets/b086a0e9-d8e5-4d0d-9870-51c00bf3fc06" />
+
+
 ## Prerequisites
 
 - [Docker](https://docs.docker.com/get-docker/) and Docker Compose
