@@ -1,11 +1,13 @@
 package com.eventsapp.registration.service;
 
+import com.eventsapp.registration.AlreadyRegisteredException;
 import com.eventsapp.registration.EventFullException;
 import com.eventsapp.registration.dto.RegisterRequest;
 import com.eventsapp.registration.repository.RegistrationRepository;
 import com.eventsapp.event.model.Event;
 import com.eventsapp.event.repository.EventRepository;
 import jakarta.persistence.EntityNotFoundException;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -31,6 +33,10 @@ public class RegistrationService {
             throw new EventFullException(eventId);
         }
 
-        registrationRepository.insert(eventId, req.firstName(), req.lastName(), req.idNumber());
+        try {
+            registrationRepository.insert(eventId, req.firstName(), req.lastName(), req.idNumber());
+        } catch (DataIntegrityViolationException e) {
+            throw new AlreadyRegisteredException();
+        }
     }
 }
