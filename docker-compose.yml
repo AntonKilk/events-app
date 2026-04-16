@@ -23,8 +23,8 @@ services:
       DB_URL: jdbc:postgresql://db:5432/events
       DB_USER: events
       DB_PASSWORD: events
-      ADMIN_EMAIL: admin@example.com
-      ADMIN_PASSWORD: changeme
+      ADMIN_EMAIL: ${ADMIN_EMAIL:-admin@example.com}
+      ADMIN_PASSWORD: ${ADMIN_PASSWORD:-changeme}
     depends_on:
       db:
         condition: service_healthy
