@@ -1,0 +1,4 @@
+app:
+  admin:
+    email: admin@example.com
+    password: changeme

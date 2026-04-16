@@ -10,24 +10,24 @@ A simple event registration service. Administrators create events; anyone can re
 
 ---
 
-## Running with Docker Compose
+## Configuration
 
-The easiest way to run the full stack.
+Admin credentials are set in `src/main/resources/application-local.yml`:
 
-**1. Configure admin credentials**
-
-Copy `.env.example` to `.env` and edit it:
-
-```bash
-cp .env.example .env
+```yaml
+app:
+  admin:
+    email: admin@example.com
+    password: changeme
 ```
 
-```
-ADMIN_EMAIL=admin@example.com
-ADMIN_PASSWORD=changeme
-```
+Edit this file before starting the app.
 
-**2. Start the database**
+---
+
+## Running locally
+
+**1. Start the database**
 
 The backend requires PostgreSQL to be running before it starts.
 
@@ -35,17 +35,23 @@ The backend requires PostgreSQL to be running before it starts.
 docker compose up -d db
 ```
 
-**3. Start the backend**
+Wait a few seconds, then verify the `db` service shows `healthy`:
 
 ```bash
-./gradlew bootRun
+docker compose ps
+```
+
+**2. Start the backend**
+
+```bash
+./gradlew bootRun --args='--spring.profiles.active=local'
 ```
 
 The API starts at `http://localhost:8080`. Liquibase runs the database migrations automatically on first start.
 
-> **Tip:** If you just want to build the JAR without running tests (tests spin up Docker containers and take several minutes), use `./gradlew bootJar -x test`. For the fastest full-stack setup, skip steps 2–4 and use `docker compose up --build` instead — it builds and starts everything in one command.
+> **Tip:** To build the JAR without running tests (tests spin up Docker containers and take several minutes), use `./gradlew bootJar -x test`.
 
-**4. Start the frontend**
+**3. Start the frontend**
 
 ```bash
 cd frontend
@@ -59,10 +65,9 @@ The app is available at `http://localhost:5173`.
 
 ## Running fully in Docker
 
-Build and run everything in containers:
+Builds and starts everything in one command:
 
 ```bash
-cp .env.example .env   # edit credentials first
 docker compose up --build
 ```
 
@@ -72,8 +77,7 @@ The app is available at `http://localhost:8080`.
 
 ## Admin access
 
-Log in at the top-right corner of the page using the credentials from `.env`.  
-The default credentials (if `.env` is not configured) are `admin@example.com` / `changeme`.
+Log in at the top-right corner of the page using the credentials from `application-local.yml`.
 
 ---
 
@@ -86,9 +90,9 @@ The default credentials (if `.env` is not configured) are `admin@example.com` / 
 │       ├── java/         # Application code
 │       └── resources/
 │           ├── application.yml          # App configuration
+│           ├── application-local.yml    # Local credentials (edit this)
 │           └── db/changelog/changes/    # Liquibase migrations
 ├── frontend/             # React + TypeScript + Tailwind frontend
 │   └── src/
-├── docker-compose.yml    # PostgreSQL + app services
-└── .env                  # Admin credentials (gitignored)
+└── docker-compose.yml    # PostgreSQL + app services
 ```
